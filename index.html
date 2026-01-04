@@ -11,7 +11,21 @@
 </head>
 
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+  <script>
+    window.addEventListener('load', function (ev) {
+      _flutter.loader.loadEntrypoint({
+        onEntrypointLoaded: function (engineInitializer) {
+          engineInitializer.initializeEngine({
+            // السطر ده هو البديل للأمر اللي كان بيتمسح
+            // بيخلي فلاتر يستخدم CanvasKit اللي بيظهر الخطوط والألوان صح
+            renderer: "canvaskit",
+          }).then(function (appRunner) {
+            appRunner.runApp();
+          });
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>
